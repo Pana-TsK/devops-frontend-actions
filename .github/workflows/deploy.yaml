@@ -21,7 +21,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t panatsk/example-frontend:latest .
+          docker build -t panatsk/example-frontend:latest ./example-frontend
 
       - name: Push Docker image
         run: |
