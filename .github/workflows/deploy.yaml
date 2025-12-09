@@ -21,11 +21,11 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t <dockerhub-username>/example-frontend:latest .
+          docker build -t panatsk/example-frontend:latest .
 
       - name: Push Docker image
         run: |
-          docker push <dockerhub-username>/frontend:latest
+          docker push panatsk/frontend:latest
 
       - name: Trigger Render deployment
         run: |
