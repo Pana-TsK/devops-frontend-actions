@@ -21,7 +21,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t <dockerhub-username>/frontend:latest .
+          docker build -t <dockerhub-username>/example-frontend:latest .
 
       - name: Push Docker image
         run: |
