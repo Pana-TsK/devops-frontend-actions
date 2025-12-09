@@ -1,0 +1,18 @@
+FROM node:16
+
+EXPOSE 5000
+
+WORKDIR /usr/src/app
+
+COPY ./package.json .
+
+RUN npm install && npm install -g serve
+
+COPY . .
+
+ENV REACT_APP_BACKEND_URL=/api/
+
+RUN npm run build
+
+
+CMD ["serve", "-s", "-l", "5000", "build"]
