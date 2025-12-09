@@ -1,0 +1,36 @@
+name: deploy front-end to render
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v6
+
+      - name: log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build Docker image
+        run: |
+          docker build -t <dockerhub-username>/frontend:latest ./frontend
+
+      - name: Push Docker image
+        run: |
+          docker push <dockerhub-username>/frontend:latest
+
+      - name: Trigger Render deployment
+        run: |
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
+             https://api.render.com/deploy/srv-d4l19di4d50c73dqi1e0?key=GvLju0uAdHM
+
+
